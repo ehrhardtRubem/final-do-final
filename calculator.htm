@@ -1,0 +1,392 @@
+
+<!-- saved from url=(0057)file:///C:/Users/Rubinho/Desktop/test-site/calculator.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <link rel="stylesheet" href="./calculator_files/w3.css">
+<link rel="stylesheet" href="./calculator_files/css">
+<style>
+body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("cancer.png");
+    min-height: 45%;
+}
+.menu {
+    display: none;
+}
+</style>
+<script src="file:///C:/Users/Rubinho/Desktop/test-site/mapBiopsy.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/test-site/mapDensity.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/test-site/mapFamhx.js" type="text/javascript" defer=""></script></head><body onload="test()">
+
+<!-- Links (sit on top) -->
+<div class="w3-middle">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="file:///C:/Users/Rubinho/Desktop/test-site/index.html" class="w3-button w3-block w3-black">Perguntas</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="file:///C:/Users/Rubinho/Desktop/test-site/calculator.htm" class="w3-button w3-block w3-black">Quiz</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="file:///C:/Users/Rubinho/Desktop/test-site/autoexame.html" class="w3-button w3-block w3-black">Autoexame</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="file:///C:/Users/Rubinho/Desktop/test-site/alarme.html" class="w3-button w3-block w3-black">Sinais alarmantes</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+ <header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>Combate ao cancêr de mama</b>
+ <img src="./calculator_files/cancer.png" style="width:20%"></h1>
+    
+  
+	<title>Calculadora de risco de câncer de mama BCSC</title>
+	<meta name="keywords" content="BCSC, Breast Cancer Surveillance Consortium, breast, breast cancer, risk assessment"> 
+	<link rel="stylesheet" type="text/css" href="./calculator_files/calculator.css" media="all">
+	
+	<script type="text/javascript" src="./calculator_files/check.js.download"></script>
+	<script type="text/javascript" src="./calculator_files/calculator.js.download"></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapBiopsy.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapDensity.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapFamhx.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapBiopsy.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapDensity.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Desktop/sitez%C3%A3o/mapFamhx.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Documents/mapBiopsy.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Documents/mapDensity.js" type="text/javascript" defer=""></script><script src="file:///C:/Users/Rubinho/Documents/mapFamhx.js" type="text/javascript" defer=""></script><script src="./calculator_files/mapBiopsy.js.download" type="text/javascript" defer=""></script><script src="./calculator_files/mapDensity.js.download" type="text/javascript" defer=""></script><script src="./calculator_files/mapFamhx.js.download" type="text/javascript" defer=""></script>	
+	<script type="text/javascript">			
+		function test()
+		{
+			setValueForTest(); // enable this to set value for faster testing during development
+		}
+		
+		function setValueForTest()
+		{
+			/*
+			// test			
+			document.riskForm.age.selectedIndex = 20;
+			document.riskForm.density.selectedIndex = 1;
+			document.riskForm.relativeBC.selectedIndex = 1;
+			document.riskForm.biopsy.selectedIndex = 4;	
+			document.riskForm.race.selectedIndex = 5;		
+			document.riskForm.priorBC.selectedIndex = 2;						
+			*/
+			
+			/*
+			// test case 1: 5-Y risk = 0.2785, 10-Y risk = 0.73027 - OK as 5/14/2015			
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 5;		// age 38
+			document.riskForm.race.selectedIndex = 1;		// white
+			document.riskForm.relativeBC.selectedIndex = 1;	// No
+			document.riskForm.biopsy.selectedIndex = 7;		// unknown - option removed 6/30
+			document.riskForm.density.selectedIndex = 2;
+			
+			
+			/*
+			// test case 2: 5-Y risk = 0.74816, 10-Y risk = 1.95238 - OK as 5/14/2015			
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 5;		// age 38
+			document.riskForm.race.selectedIndex = 1;		// white
+			document.riskForm.relativeBC.selectedIndex = 1;	// No
+			document.riskForm.biopsy.selectedIndex = 4;		// proliferative w/o atypia
+			document.riskForm.density.selectedIndex = 3;
+			
+			
+			// test case 3: 5-Y risk = 0.75029, 10-Y risk = 2.00070 - OK as 5/14/2015
+			/*
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 4;		// age 37
+			document.riskForm.race.selectedIndex = 1;		// white
+			document.riskForm.relativeBC.selectedIndex = 1;	// No
+			document.riskForm.biopsy.selectedIndex = 5;		// atypical hyperplasia
+			document.riskForm.density.selectedIndex = 2;
+			*/
+			
+			// test case 4: 5-Y risk = 2.47431, 10-Y risk = 4.53250 - OK as 5/14/2015
+			/*
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 39;		// age 72
+			document.riskForm.race.selectedIndex = 2;		// black
+			document.riskForm.relativeBC.selectedIndex = 1;	// No
+			document.riskForm.biopsy.selectedIndex = 3;		// non-proliferative
+			document.riskForm.density.selectedIndex = 2;
+			*/
+			
+			// test case 5: 5-Y risk = 0.58899, 10-Y risk = 1.45079 - OK as 5/14/2015
+			/*
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 7;		// age 40
+			document.riskForm.race.selectedIndex = 4;		// native american
+			document.riskForm.relativeBC.selectedIndex = 1;	// No
+			document.riskForm.biopsy.selectedIndex = 1;		// No
+			document.riskForm.density.selectedIndex = 4;
+			*/
+			
+			// test case 7: 5-Y risk = 3.10344, 10-Y risk = 6.64807 - OK as 5/14/2015
+			/*
+			document.riskForm.priorBC.selectedIndex = 2;	// No
+			document.riskForm.age.selectedIndex = 20;		// age 53
+			document.riskForm.race.selectedIndex = 1;		// white
+			document.riskForm.relativeBC.selectedIndex = 2;	// yes
+			document.riskForm.biopsy.selectedIndex = 2;		// unknown result of prior
+			document.riskForm.density.selectedIndex = 3;
+			*/
+		}
+		
+		function myButtonClick()
+		{
+			var btn = document.getElementById("mybutton");		
+			if (btn.name == "calculate_risk")
+			{
+				
+				doCalculate();
+			}
+			else
+			{
+				window.navigate("calculator.htm");
+			}
+		}
+		
+		function doCalculate()
+		{
+			// error checking first
+			if (checkPriorBC() == false)
+			{
+				return;
+			}
+			else if (checkAge() == false)
+			{
+				return;
+			}
+			else if (checkRace() == false)
+			{
+				return;
+			}
+			else if (checkRelativeBC() == false)
+			{
+				return;
+			}
+			else if (checkBiopsy() == false)
+			{
+				return;
+			}
+			else if (checkDensity() == false)
+			{
+				return;
+			}
+			// input data checked, do calculation now
+			var age = document.riskForm.age.selectedIndex + 33; // have to use selectedIndex so that it will be treated as int
+			
+			// version 2
+			// selectedIndex = 1 for white, 2 for black, 4 for asian,
+			// 4 for native american, 5 for hispanic, 6 for other, 7 for unknown
+			var race = document.riskForm.race.selectedIndex;	
+			if (document.riskForm.race.selectedIndex < 1)
+			{
+				race = 0;
+			}
+			
+			var relativeBC = document.riskForm.relativeBC.selectedIndex - 1;
+			if (relativeBC > 1)
+			{
+				relativeBC = 9;	// unknown
+			}
+			
+			// version 2
+			// selectedIndex = 1 for no biopsy, 2 for unknown result in prior, 3 for Non-proliferative, 4 for Proliferative w/o atypia, 5 for Atypical hyperplasia, 6 for LCIS, 7 for unknown		
+			var biopsy = document.riskForm.biopsy.selectedIndex + 1;
+			if (biopsy == 8)	// unknown
+			{
+				biopsy = 1;
+			}
+			
+			var density  = document.riskForm.density.selectedIndex;
+			create_result_page(age, race, relativeBC, biopsy, density);
+		}				
+	</script>
+	<noscript>
+		<br>
+		<p class="error" align="center">This page requires a JavaScript-enabled browser;</p>
+		<p class="error" align="center">please enable the script to run in your browser.</p>
+		<br>
+	</noscript>
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./calculator_files/translateelement.css">
+
+
+<div class="banner" title="bandeira">
+	<table width="100%" cellpadding="0" cellspacing="5" border="0">
+        <tbody><tr>
+            <td align="left">
+                <a href="http://breastscreening.cancer.gov/" target="_blank"><img src="./calculator_files/BCSC-logo.jpg" alt="Logotipo do BCSC" width="150" border="0"></a>
+            </td>
+            <td class="banner" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Calculadora de Risco de Consórcio de Vigilância de Câncer de Mama</font></font></td>
+			<td width="100"></td>
+        </tr>
+		<tr>
+			<td colspan="3"><img src="./calculator_files/ribbon_pink.jpg" width="100%" height="10" alt=""></td>
+		</tr>
+    </tbody></table>
+</div>
+
+<div id="divMainContent" name="divMainContent">
+	<h2 id="header" name="header" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Calculadora de Risco </font></font></h2>
+	
+	<table width="85%" id="riskTable" align="center" border="0">
+	<tbody><tr id="trRiskForm"><td id="tdRiskForm">
+	<form class="riskForm" id="riskForm" name="riskForm" title="Formulário do fator de risco">
+	<table class="withborder" align="center" cellspacing="0" cellpadding="15" \="">
+		<tbody><tr>
+			<th class="number" scope="row" title="questão 1" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#priorbc" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="priorBC"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">A mulher tem história de câncer de mama ou de carcinoma ductal in situ (DCIS) </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , aumento de mama ou mastectomia?</font></font></label></td>
+			<td class="answer" valign="top">
+				<select id="priorBC" name="priorBC" onchange="checkPriorBC()">
+				<option value="99">Selecione</option>
+				<option value="1">sim</option>
+				<option value="0">Não</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th class="number" scope="row" title="Questão 2" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#age" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="age"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Qual é a idade da mulher?</font></font></label></td>
+			<td class="answer" valign="top">
+				<select id="age" name="age" onchange="checkAge()">
+				<option value="99">Selecione</option>
+				<option value="34">&lt;35</option>
+				<option value="35">35</option>
+				<option value="36">36</option>
+				<option value="37">37</option>
+				<option value="38">38</option>
+				<option value="39">39</option>
+				<option value="40">40</option>
+				<option value="41">41</option>
+				<option value="42">42</option>
+				<option value="43">43</option>
+				<option value="44">44</option>
+				<option value="45">45</option>
+				<option value="46">46</option>
+				<option value="47">47</option>
+				<option value="48">48</option>
+				<option value="49">49</option>
+				<option value="50">50</option>
+				<option value="51">51</option>
+				<option value="52">52</option>
+				<option value="53">53</option>
+				<option value="54">54</option>
+				<option value="55">55</option>
+				<option value="56">56</option>
+				<option value="57">57</option>
+				<option value="58">58</option>
+				<option value="59">59</option>
+				<option value="60">60</option>
+				<option value="61">61</option>
+				<option value="62">62</option>
+				<option value="63">63</option>
+				<option value="64">64</option>
+				<option value="65">65</option>
+				<option value="66">66</option>
+				<option value="67">67</option>
+				<option value="68">68</option>
+				<option value="69">69</option>
+				<option value="70">70</option>
+				<option value="71">71</option>
+				<option value="72">72</option>
+				<option value="73">73</option>
+				<option value="74">74</option>
+				<option value="80">&gt; 74</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th class="number" scope="row" title="Questão 3" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#race" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="race"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Qual é a raça / etnia da mulher?</font></font></label></td>
+			<td class="answer" valign="top">
+				<select id="race" name="race" onchange="checkRace()">
+				<option value="99">Selecione</option>
+				<option value="1">Branco</option>
+				<option value="2">Preto</option>
+				<option value="3">Asiática</option>
+				<option value="4">Americano nativo</option>				
+				<option value="5">hispânico</option>
+				<option value="6">Outras raças / múltiplas</option>
+				<option value="7">Desconhecido</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th class="number" scope="row" title="questão 4" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#family" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="relativeBC"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Algum parente de primeiro grau da mulher (mãe, irmã ou filha) foi diagnosticado com câncer de mama?</font></font></label></td>
+			<td class="answer" valign="top">
+				<select id="relativeBC" name="relativeBC" onchange="checkRelativeBC()">
+				<option value="99">Selecione</option>
+				<option value="0">Não</option>
+				<option value="1">sim</option>
+				<option value="-1">Desconhecido</option>
+				</select>
+			</td>
+		</tr>		
+		<tr>
+			<th class="number" scope="row" title="questao 5" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#biopsy" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="biopsy"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">A mulher fez biópsias de </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> mama anteriores </font><font style="vertical-align: inherit;">(positivas ou negativas)?</font></font></label></td>
+			<td class="answer" valign="top">
+				<select id="biopsy" name="biopsy" onchange="checkBiopsy()">
+				<option value="99">Selecione</option>
+				<option value="2">Nenhum (sem biópsia prévia)</option>
+				<option value="3">Biópsia prévia, diagnóstico desconhecido</option>
+				<option value="4">Lesão não proliferativa</option>
+				<option value="5">Alterações proliferativas sem atipias</option>
+				<option value="6">Alterações proliferativas com atipia</option>
+				<option value="7">Carcinoma lobular in situ</option>
+				<!-- <option value="1">Unknown</option> removed on 06/30/2015 -->
+				</select>
+				<br>
+				
+			</td>			
+		</tr>
+		<tr>
+			<th class="number" scope="row" title="questão 6" valign="top"><a href="https://tools.bcsc-scc.org/bc5yearrisk/riskfactors.htm#density" target="_blank"><font style="vertical-align: inherit;"></font></a></th>
+			<td class="question"><label for="density"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Qual é a densidade mamária </font><font style="vertical-align: inherit;"> BI-RADS </font></font><sup><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">®</font></font></sup> <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> da mulher </font><font style="vertical-align: inherit;">(avaliação radiológica da densidade do tecido mamário por radiologistas que interpretam mamografias)?</font></font><a href="https://tools.bcsc-scc.org/bc5yearrisk/explanation.htm#density" target="_blank"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></label></td>
+			<td class="answer" valign="top">
+				<select id="density" name="density" onchange="checkDensity()">
+				<option value="99">Selecione</option>
+				<option value="1">Quase totalmente gorduroso</option>
+				<option value="2">Densidades fibroglandulares dispersas</option>
+				<option value="3">Densamente heterogêneo</option>
+				<option value="4">Extremamente denso</option>
+				</select>
+			</td>
+		</tr>
+		<tr><td class="remark" colspan="3"><font style="vertical-align: inherit;"></font></td></tr><tr>
+	</tr></tbody></table>	
+	</form> <!-- end of riskForm -->
+	</td></tr>
+	<tr><td>
+	<div id="divResult" name="divResult"></div> <!-- result area to be filled by the calculator program -->
+	</td></tr> 
+	</tbody></table> <!-- end of riskTable -->
+
+	<div id="submit">	
+		<p id="pAction" align="center">
+		<button type="button" id="mybutton" name="calculate_risk" style="width:250px; height:45px; background-color:#FFAACC; border:5px; border-radius:10px;" onclick="myButtonClick()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Calcular Risco</font></font></button>
+		</p>
+	</div>	
+</div> <!-- end of divMainContent -->
+
+
+
+<hr>
+<div id="footer" title="rodapé">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<th scope="col" title="lado esquerdo do rodapé"></th>
+			<th scope="col" title="lado direito do rodapé"></th>
+		</tr>
+		<tr>
+			
+			<td class="footer" align="right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© 2012-2015, Consórcio de Vigilância do Câncer de Mama</font></font></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="footer" align="right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Última modificação: 17 de julho de 2015</font></font></td>			
+		</tr>
+	</tbody></table>
+</div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./calculator_files/translate_24dp.png" width="20" height="20" alt="Google Tradutor"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Texto original</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Sugerir uma tradução melhor</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+ 
+
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></header></body></html>

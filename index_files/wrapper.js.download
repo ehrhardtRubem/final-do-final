@@ -1,0 +1,139 @@
+define(function () {
+
+    var pymChild,
+        urlInformation = {},
+        viewportDimensions = {},
+        meta = {
+            wrapper:   'embed',
+            product:   'news',
+            rtl:       document.querySelectorAll('.bbc-news-vj-direction--rtl').length > 0,
+            language:  (function () {
+                var wrapperElm = document.querySelector('.bbc-news-vj-wrapper');
+                var language = (/bbc-news-vj-language--([^ ]+)/).exec(wrapperElm.className);
+                if (language && language.length > 1) {
+                    return language[1].trim();
+                }
+            })()
+        },
+        iframeOffset = 0;
+
+    function subscribeToHostEvent(event, callback) {
+        pymChild.sendMessage('request', event);
+        pymChild.onMessage(event, callback);
+    }
+
+    return {
+        meta: function () {
+            return meta;
+        },
+
+        viewport: function () {
+            return viewportDimensions;
+        },
+
+        url: function () {
+            return urlInformation;
+        },
+
+        delay: (function () {
+            // fire event a set time after the main window event
+            // Credit: http://stackoverflow.com/a/2854467
+            var timer = 0;
+            return function (callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            };
+        })(),
+
+        onOptimizedScroll: function (callback) {
+            subscribeToHostEvent('window:scroll:optimized', callback);
+        },
+
+        onRawScroll: function (callback) {
+            subscribeToHostEvent('window:scroll:raw', callback);
+        },
+
+        getScrollPosition: function () {
+            return iframeOffset;
+        },
+
+        scrollTo: function (options) {
+            if ( isNaN(options.position) ) {
+                throw new Error ('Called wrapper.scrollTo without specifying a position to scroll to!');
+            }
+
+            pymChild.sendMessage('window:scrollTo', JSON.stringify(options));
+        },
+
+        markPageAsLoaded: function () {
+            pymChild.sendMessage('pageLoaded', true); // have to send a parameter :(
+            pymChild.sendHeight();
+            this.callIstats({
+                actionType: 'app loaded',
+                actionName: 'newsspec-nonuser',
+                viewLabel:  'app loaded in ' + this.meta()['product']
+            });
+            var that = this;
+            pymChild.onMessage('timeToLoad', function (timeToLoad) {
+               that.callIstats({
+                   actionType: 'time to load app',
+                   actionName: 'newsspec-nonuser',
+                   viewLabel: 'app loaded in ' + timeToLoad + ' seconds',
+               });
+            });
+        },
+
+        callIstats: function (details) {
+            pymChild.sendMessage('istats', JSON.stringify(details));
+        },
+
+        toggleFullScreen: function () {
+            var fullScreenClass = ' bbc-news-vj-wrapper--full-screen';
+            var container = document.querySelector('.bbc-news-vj-wrapper');
+            if (container) {
+                var isFullScreen = (container.className.indexOf(fullScreenClass) !== -1);
+                if (isFullScreen) {
+                    container.className = (container.className.replace(fullScreenClass, ''));
+                }
+                else {
+                    container.className += fullScreenClass;
+                }
+            }
+            pymChild.sendMessage('window:toggleFullScreen', true); // have to send a parameter :(
+        },
+
+        __iframe_init: function (pymFromIndexHtml, hostInformation) {
+            pymChild = pymFromIndexHtml;
+            urlInformation = hostInformation.url;
+            viewportDimensions = hostInformation.viewport;
+
+            if (hostInformation.meta.isSportSite) {
+                meta.product = 'sport';
+            }
+            if (hostInformation.meta.isSportApp) {
+                meta.product = 'sport-app';
+            }
+            if (hostInformation.meta.isInteractiveNewsApp) {
+                meta.product = 'news-app (interactive tag)';
+            }
+
+            var wrapperElement = document.querySelector('.bbc-news-vj-wrapper');
+            if ( !urlInformation.onbbcdomain && wrapperElement ) {
+                wrapperElement.className = wrapperElement.className.replace('bbc-news-vj-onbbcdomain', '');
+            }
+
+            subscribeToHostEvent('window:scroll:raw', function (scrollPos) {
+                iframeOffset = parseInt(scrollPos, 10);
+            });
+        },
+
+        path: function () {
+            var url = document.querySelector('.bbc-news-vj-wrapper').getAttribute('data-env');
+            var includeName = document.querySelector('.bbc-news-vj-wrapper').getAttribute('data-include-name');
+            return {
+                pathToWrapperAssets: url + '/assets/' + this.meta().wrapper,
+                projectAssets: url + '/assets/' + includeName + '-project-assets',
+            };
+        }
+    };
+});
